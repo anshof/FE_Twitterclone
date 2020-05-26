@@ -1,0 +1,26 @@
+/* NavExplore */
+.twitternav:hover {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: hsla(219, 100%, 96%, 1);
+}
+.dropdown:hover {
+  background-color: hsla(219, 100%, 96%, 1);
+  border-radius: 20px;
+}
+/* middleExplore */
+
+/* explore home */
+.covidP {
+  bottom: 30px;
+  left: 16px;
+}
+.updates {
+  bottom: 14px;
+  left: 16px;
+}
+.listBottom:hover {
+  background-color: hsla(219, 100%, 96%, 1);
+}
+/* akhir explore home */
