@@ -4,6 +4,7 @@ const initialState = {
   created_at: "",
   updated_at: "",
   tweetData: [],
+  tweetDataUser: [],
 };
 export default function tweetReducer(tweetState = initialState, action) {
   switch (action.type) {
@@ -21,7 +22,20 @@ export default function tweetReducer(tweetState = initialState, action) {
         created_at: action.payload.created_at,
         updated_at: action.payload.updated_at,
       };
+    case "GET_TWEETS_USER":
+      return {
+        ...tweetState,
+        tweetDataUser: action.payload,
+        user_id: action.payload.user_id,
+        tweet: action.payload.tweet,
+        created_at: action.payload.created_at,
+        updated_at: action.payload.updated_at,
+      };
     case "POST_TWEET":
+      return {
+        ...tweetState,
+      };
+    case "DELETE_TWEET":
       return {
         ...tweetState,
       };

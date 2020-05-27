@@ -1,6 +1,5 @@
 const initialState = {
   username: "",
-  namaPengguna: "",
   is_login: false,
   userData: [],
   name: "",
@@ -10,6 +9,7 @@ const initialState = {
   follower: "",
   following: "",
   created_at: "",
+  // is_modal: false,
 };
 
 export default function userReducer(userState = initialState, action) {
@@ -39,8 +39,12 @@ export default function userReducer(userState = initialState, action) {
       };
     case "SUCCESS_LOGOUT":
       return {
+        ...initialState,
+      };
+    case "SUCCESS_SIGNUP":
+      return {
         ...userState,
-        is_login: false,
+        // is_modal: false,
       };
     default:
       return userState;

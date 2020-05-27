@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBBox, MDBRow, MDBCol, MDBMedia } from "mdbreact";
 import moment from "moment";
+import dateFormat from "dateformat";
 const Tweets = ({
   user_id,
   tweet,
@@ -10,6 +11,10 @@ const Tweets = ({
   name,
   username,
 }) => {
+  const sles = created_at.slice(0, 25);
+  const removeKoma = sles.replace(",", "");
+  const changeFormat = dateFormat(removeKoma);
+  const changeDate = dateFormat(changeFormat, "isoDateTime");
   return (
     <MDBBox className="border-bottom">
       <MDBRow style={{ marginLeft: "0px" }}>
@@ -27,7 +32,7 @@ const Tweets = ({
             <p className="text-left mb-0">
               <strong>{name}</strong>{" "}
               <span style={{ color: "#777" }}>
-                {username} &middot; {moment(created_at).fromNow()}
+                {username} &middot; {moment(changeDate).fromNow()}
               </span>
             </p>
             <p className="text-justify pr-3">{tweet}</p>

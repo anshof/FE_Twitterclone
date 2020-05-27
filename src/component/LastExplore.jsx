@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/style.css";
-import { MDBBox, MDBFormInline, MDBLink, MDBMedia, MDBIcon } from "mdbreact";
+import { MDBBox, MDBFormInline, MDBLink, MDBMedia } from "mdbreact";
 const LastExplore = () => {
   return (
     <MDBBox className="pt-2">

@@ -1,6 +1,4 @@
 import React from "react";
-import NavExplore from "../component/NavExplore";
-import LastExplore from "../component/LastExplore";
 import {
   MDBRow,
   MDBCol,
@@ -13,16 +11,29 @@ import {
 import { changeInputTweet, postTweet } from "../store/action/actionTweet";
 import { connect } from "react-redux";
 import { getUser, doSignOut } from "../store/action/actionUser";
-import { getAllTweet } from "../store/action/actionTweet";
+import { getAllTweet, deleteTweet } from "../store/action/actionTweet";
+import NavExplore from "../component/NavExplore";
+import LastExplore from "../component/LastExplore";
 import Tweets from "../component/Tweets";
 class Jelajah extends React.Component {
   componentDidMount = async () => {
-    this.props.getUser();
-    this.props.getAllTweet();
+    console.log("ambil data component did mount");
+    await this.props.getUser();
+    await this.props.getAllTweet();
   };
   postAfterTweet = async () => {
     await this.props.postTweet();
-    this.props.history.push("/jelajah");
+    await this.props.history.replace("/home");
+    await this.props.getAllTweet();
+    this.inputReset();
+  };
+  inputReset = () => {
+    const postInput = document.getElementById("postInput");
+    postInput.value = "";
+  };
+  delTrans = async (e) => {
+    e.preventDefault();
+    await this.props.deleteTweet(e.target.value);
   };
   render() {
     return (
@@ -39,7 +50,7 @@ class Jelajah extends React.Component {
           </MDBCol>
           {/* middle side > contain post tweet and get all tweet */}
           <MDBCol size="6" className="border-right px-0">
-            <MDBBox className="">
+            <MDBBox>
               <MDBBox className="border-bottom mx-0 px-0">
                 <MDBBox className="pt-3 mx-5 ">
                   <MDBRow className="d-flex justify-content-between">
@@ -61,11 +72,12 @@ class Jelajah extends React.Component {
                     alt="pict"
                     style={{ width: "50px", height: "50px" }}
                   />
-                  <MDBBox className="W-100 ml-3" style={{ width: "500px" }}>
+                  <MDBBox className="w-100 ml-3" style={{ width: "500px" }}>
                     <MDBInput
                       className="border-bottom-0"
                       label="What's happening?"
                       size="lg"
+                      id="postInput"
                       name="tweet"
                       onChange={(e) => this.props.changeInputTweet(e)}
                     />
@@ -97,7 +109,6 @@ class Jelajah extends React.Component {
                     }}
                     onClick={() => this.postAfterTweet()}
                   >
-                    {" "}
                     Tweet
                   </MDBBtn>
                 </MDBBox>
@@ -123,6 +134,7 @@ class Jelajah extends React.Component {
                   tweet={el.tweet}
                   created_at={el.created_at}
                   updated_at={el.updated_at}
+                  handleDelete={(e) => this.delTrans(e)}
                 />
               </div>
             ))}
@@ -148,5 +160,6 @@ const mapDispatchToProps = {
   getAllTweet,
   changeInputTweet,
   postTweet,
+  deleteTweet,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Jelajah);

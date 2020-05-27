@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "../css/style.css";
+import { MDBBox } from "mdbreact";
 
 const ExploreHome = () => {
   return (
@@ -14,10 +15,10 @@ const ExploreHome = () => {
         fontFamily: "Roboto",
       }}
     >
-      <div className="d-flex justify-content-between mx-1 align-items-center py-2 px-2">
+      <MDBBox className="d-flex justify-content-between mx-1 align-items-center py-2 px-2">
         <p className="my-auto font-weight-bold">Explore</p>
         <i className="fas fa-cog my-auto" style={{ color: "#38A1F3" }}></i>
-      </div>
+      </MDBBox>
       <div className="my-0 py-0">
         <img
           className="w-100"

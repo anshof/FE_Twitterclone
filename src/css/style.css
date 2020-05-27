@@ -1,3 +1,6 @@
+body {
+  background-color: white;
+}
 /* NavExplore */
 .twitternav:hover {
   height: 35px;
@@ -24,3 +27,22 @@
   background-color: hsla(219, 100%, 96%, 1);
 }
 /* akhir explore home */
+/* nav tab */
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #38a1f3;
+  border-width: 1px 1px 0 1px;
+}
+/* akhir nav tab */

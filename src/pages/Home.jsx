@@ -1,43 +1,35 @@
 import React from "react";
-import {
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-  MDBModal,
-  MDBModalHeader,
-  MDBModalBody,
-  MDBModalFooter,
-  MDBNavLink,
-} from "mdbreact";
+import { MDBContainer, MDBCol, MDBRow, MDBNavLink, MDBLink } from "mdbreact";
 import { doLogin, changeInputUser } from "../store/action/actionUser";
 import { Link } from "react-router-dom";
-
+import { getUser, signUp } from "../store/action/actionUser";
 import { connect } from "react-redux";
-import "../css/style.css";
 import Navigation from "../component/Navigation";
 import ExploreHome from "../component/ExploreHome";
 
 import "../css/style.css";
+import ModalSignup from "../component/ModalSignup";
 class Home extends React.Component {
-  // state = {
-  //   modal: false,
-  // };
+  state = {
+    modal: false,
+  };
 
-  // toggle = () => {
-  //   this.setState({
-  //     modal: !this.state.modal,
-  //   });
-  // };
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
+
   postLogin = async () => {
     await this.props.doLogin();
     const is_login = this.props.login;
     if (is_login) {
-      this.props.history.push("/jelajah");
+      // await this.props.getUser();
+      this.props.history.push("/home");
     }
+    // ini gmn kalo blm ada datanya di db woy
   };
   render() {
-    console.warn("home", this);
     return (
       <div>
         <Navigation {...this.props} />
@@ -91,7 +83,7 @@ class Home extends React.Component {
                       id="inputPlaceholderEx"
                       className="form-control py-0"
                       style={{ borderRadius: "10px" }}
-                      name="namaPengguna"
+                      name="username"
                       onChange={(e) => this.props.changeInput(e)}
                     />
                   </div>
@@ -113,7 +105,7 @@ class Home extends React.Component {
                       id="inputPlaceholderEx"
                       className="form-control py-0"
                       style={{ borderRadius: "10px" }}
-                      name="kataKunci"
+                      name="password"
                       onChange={(e) => this.props.changeInput(e)}
                     />
                   </div>
@@ -124,7 +116,7 @@ class Home extends React.Component {
                   </Link>
                   <div className="px-3 pb-1">
                     <MDBNavLink
-                      to="/jelajah"
+                      to="/home"
                       type="submit"
                       className="my-0 rounded-pill font-weight-bold"
                       style={{
@@ -139,8 +131,8 @@ class Home extends React.Component {
                   </div>
                   <p className="text-center my-0 py-0">or</p>
                   <div className="px-3 pb-2">
-                    <MDBNavLink
-                      to="#!"
+                    <MDBLink
+                      // to="#!"
                       className="mt-0 mb-2 rounded-pill font-weight-bold"
                       style={{
                         width: "410px",
@@ -148,9 +140,10 @@ class Home extends React.Component {
                         border: "1px solid #38A1F3",
                         backgroundColor: "#38A1F3",
                       }}
+                      onClick={this.toggle}
                     >
                       Sign up
-                    </MDBNavLink>
+                    </MDBLink>
                   </div>
                 </div>
                 <div
@@ -165,21 +158,11 @@ class Home extends React.Component {
                 </div>
               </div>
             </MDBCol>
-            {/* <MDBContainer>
-              <MDBBtn onClick={this.toggle}>Modal</MDBBtn>
-              <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                <MDBModalHeader toggle={this.toggle}>
-                  MDBModal title
-                </MDBModalHeader>
-                <MDBModalBody>(...)</MDBModalBody>
-                <MDBModalFooter>
-                  <MDBBtn color="secondary" onClick={this.toggle}>
-                    Close
-                  </MDBBtn>
-                  <MDBBtn color="primary">Save changes</MDBBtn>
-                </MDBModalFooter>
-              </MDBModal>
-            </MDBContainer> */}
+            <ModalSignup
+              toggle={this.toggle}
+              isOpen={this.state.modal}
+              {...this.props}
+            />
           </MDBRow>
         </MDBContainer>
       </div>
@@ -188,11 +171,15 @@ class Home extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    namaPengguna: state.user.namaPengguna,
-    kataKunci: state.user.kataKunci,
     login: state.user.is_login,
+    is_modal: state.user.is_modal,
   };
 };
-const mapDispatchToProps = { doLogin, changeInput: (e) => changeInputUser(e) };
+const mapDispatchToProps = {
+  doLogin,
+  getUser,
+  signUp,
+  changeInput: (e) => changeInputUser(e),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

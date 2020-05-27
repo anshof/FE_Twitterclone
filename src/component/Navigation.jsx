@@ -10,10 +10,6 @@ import {
   MDBContainer,
   MDBCol,
   MDBBtn,
-  MDBModalFooter,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModal,
 } from "mdbreact";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../css/style.css";
@@ -26,15 +22,15 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
   // toggleCollapse = () => {
   //   this.setState({ isOpen: !this.state.isOpen });
   // };
-  state = {
-    modal: false,
-  };
+  // state = {
+  //   modal: false,
+  // };
 
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  };
+  // toggle = () => {
+  //   this.setState({
+  //     modal: !this.state.modal,
+  //   });
+  // };
 
   return (
     <Router>
@@ -106,11 +102,11 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
                     width: "120px",
                     color: "white",
                   }}
-                  onClick={toggle}
+                  // onClick={toggle}
                 >
                   Sign up
                 </MDBBtn>
-                <MDBModal isOpen={state.modal} toggle={toggle}>
+                {/* <MDBModal isOpen={state.modal} toggle={toggle}>
                   <MDBModalHeader toggle={toggle}>
                     MDBModal title
                   </MDBModalHeader>
@@ -121,7 +117,7 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
                     </MDBBtn>
                     <MDBBtn color="primary">Save changes</MDBBtn>
                   </MDBModalFooter>
-                </MDBModal>
+                </MDBModal> */}
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#!">

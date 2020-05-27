@@ -51,3 +51,44 @@ export const changeInputTweet = (e) => {
     payload: e,
   };
 };
+
+export const getTweetbyUser = (e) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://0.0.0.0:5050/tweet/user", {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Accept: "application/json; charset=utf-8",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(async (response) => {
+        dispatch({ type: "GET_TWEETS_USER", payload: response.data });
+        console.warn("get tweet by user", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const deleteTweet = (item) => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    await axios
+      .delete("http://0.0.0.0:5050/tweet/" + item, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Accept: "application/json; charset=utf-8",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(async (response) => {
+        dispatch({ type: "DELETE_TWEET" });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
