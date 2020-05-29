@@ -17,9 +17,10 @@ import {
 import "../css/style.css";
 
 const NavExplore = (props, postSignout) => {
-  postSignout = () => {
-    props.doSignOut();
-    props.history.push("/");
+  postSignout = async (e) => {
+    await props.handleSignout(e);
+    // props.doSignOut();
+    // props.history.push("/");
   };
   return (
     <MDBBox>
@@ -165,7 +166,8 @@ const NavExplore = (props, postSignout) => {
         </MDBNavLink>
         <MDBNavLink
           to="/"
-          onClick={() => postSignout()}
+          onClick={(event) => postSignout(event.target.value)}
+          // onClick={() => postSignout()}
           display="flex"
           style={{ color: "black" }}
         >

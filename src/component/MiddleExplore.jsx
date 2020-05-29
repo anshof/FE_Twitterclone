@@ -2,6 +2,9 @@ import React from "react";
 import { MDBBox, MDBLink, MDBMedia, MDBBtn } from "mdbreact";
 
 const MiddleExplore = (props) => {
+  const sles = props.created_at.slice(8, 16);
+  // const removeKoma = sles.replace(",", "");
+
   return (
     <MDBBox className="pt-3">
       {/* 1st row  */}
@@ -62,7 +65,7 @@ const MiddleExplore = (props) => {
         </p>
         <p className="mb-2">{props.username}</p>
         <p className="text-capitalize mb-2">{props.bio}</p>
-        <MDBBox display="flex">
+        <MDBBox display="flex" alignItems="baseline">
           <i className="far fa-calendar-alt mr-3"></i>
 
           <p>Bergabung {props.created_at}</p>

@@ -31,9 +31,15 @@ class Jelajah extends React.Component {
     const postInput = document.getElementById("postInput");
     postInput.value = "";
   };
-  delTrans = async (e) => {
-    e.preventDefault();
-    await this.props.deleteTweet(e.target.value);
+  delTweet = async (e) => {
+    await this.props.deleteTweet(e);
+    await this.props.history.replace("/home");
+    await this.props.getAllTweet();
+    this.inputReset();
+  };
+  signOut = async (e) => {
+    await this.props.doSignOut(e);
+    await this.props.history.replace("/");
   };
   render() {
     return (
@@ -45,6 +51,7 @@ class Jelajah extends React.Component {
               nama={this.props.userData.name}
               pp={this.props.userData.pict_profile}
               username={this.props.userData.username}
+              handleSignout={(e) => this.signOut(e)}
               {...this.props}
             />
           </MDBCol>
@@ -127,14 +134,15 @@ class Jelajah extends React.Component {
             {this.props.tweetData.map((el, index) => (
               <div key={index}>
                 <Tweets
-                  user_id={el.id}
+                  // index={index}
+                  id={el.id}
                   name={el.user_id.name}
                   username={el.user_id.username}
                   pict_profile={el.user_id.pict_profile}
                   tweet={el.tweet}
                   created_at={el.created_at}
                   updated_at={el.updated_at}
-                  handleDelete={(e) => this.delTrans(e)}
+                  handleDelete={(e) => this.delTweet(e)}
                 />
               </div>
             ))}

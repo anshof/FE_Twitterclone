@@ -27,7 +27,6 @@ class Home extends React.Component {
       // await this.props.getUser();
       this.props.history.push("/home");
     }
-    // ini gmn kalo blm ada datanya di db woy
   };
   render() {
     return (
@@ -132,7 +131,6 @@ class Home extends React.Component {
                   <p className="text-center my-0 py-0">or</p>
                   <div className="px-3 pb-2">
                     <MDBLink
-                      // to="#!"
                       className="mt-0 mb-2 rounded-pill font-weight-bold"
                       style={{
                         width: "410px",

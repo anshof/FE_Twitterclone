@@ -13,14 +13,10 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
     alert("You're already registered, but first Log in!");
     console.log("post sign up");
   };
-  // modalClose = (toggle) => {
-  //   // isOpen = props.isOpen;
-  //   toggle = props.toggle;
-  // };
   return (
     <MDBContainer>
       <MDBModal
-        style={{ borderRadius: "50px" }}
+        // style={{ borderRadius: "50px" }}
         isOpen={props.isOpen}
         toggle={props.toggle}
       >
@@ -37,7 +33,6 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
             <MDBBox className="ml-auto">
               <MDBLink
                 className="d-inline text-capitalize rounded-pill font-weight-bold"
-                // onClick={props.toggle}
                 onClick={() => postSignup()}
                 style={{
                   width: "100px",
@@ -83,7 +78,6 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
                 backgroundColor: "hsla(219, 100%, 96%, 1)",
                 borderRadius: "10px",
               }}
-              // onSubmit={(e) => e.preventDefault()}
             >
               <p
                 className="text-left pt-1 pl-1 mb-0"
@@ -128,7 +122,6 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
                 backgroundColor: "hsla(219, 100%, 96%, 1)",
                 borderRadius: "10px",
               }}
-              // onSubmit={(e) => e.preventDefault()}
             >
               <p
                 className="text-left pt-1 pl-1 mb-0"
@@ -151,7 +144,6 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
                 backgroundColor: "hsla(219, 100%, 96%, 1)",
                 borderRadius: "10px",
               }}
-              // onSubmit={(e) => e.preventDefault()}
             >
               <p
                 className="text-left pt-1 pl-1 mb-0"
@@ -174,7 +166,6 @@ const ModalSignup = (props, postSignup, isOpen, toggle, modalClose) => {
                 backgroundColor: "hsla(219, 100%, 96%, 1)",
                 borderRadius: "10px",
               }}
-              // onSubmit={(e) => e.preventDefault()}
             >
               <p
                 className="text-left pt-1 pl-1 mb-0"

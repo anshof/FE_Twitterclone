@@ -44,7 +44,6 @@ export default function userReducer(userState = initialState, action) {
     case "SUCCESS_SIGNUP":
       return {
         ...userState,
-        // is_modal: false,
       };
     default:
       return userState;
