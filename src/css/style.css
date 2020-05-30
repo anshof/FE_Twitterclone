@@ -1,17 +1,21 @@
 body {
   background-color: white;
+  font-family: "Ubuntu";
 }
 /* NavExplore */
-.twitternav:hover {
+/* .twitternav:hover {
   height: 35px;
   width: 35px;
   border-radius: 50%;
   background-color: hsla(219, 100%, 96%, 1);
+} */
+.beranda:hover {
+  background-color: hsla(219, 100%, 96%, 1);
 }
-.dropdown:hover {
+/* .dropdown:hover {
   background-color: hsla(219, 100%, 96%, 1);
   border-radius: 20px;
-}
+} */
 /* middleExplore */
 
 /* explore home */
@@ -42,7 +46,7 @@ body {
 
 .tab-list-active {
   background-color: white;
-  border: solid #38a1f3;
+  border: solid #1c9ceb;
   border-width: 1px 1px 0 1px;
 }
 /* akhir nav tab */

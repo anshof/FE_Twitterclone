@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   MDBNav,
   MDBIcon,
@@ -14,18 +15,23 @@ import {
   MDBDropdownItem,
   MDBLink,
 } from "mdbreact";
+
 import "../css/style.css";
 
 const NavExplore = (props, postSignout) => {
+  // function to handle sign out
   postSignout = async (e) => {
     await props.handleSignout(e);
-    // props.doSignOut();
-    // props.history.push("/");
   };
+
   return (
-    <MDBBox>
+    <MDBBox style={{ fontFamily: "Ubuntu" }}>
       <MDBNav className="flex-column pt-2">
-        <MDBNavLink to="#!">
+        <MDBNavLink
+          to="#!"
+          className="beranda ml-3 beranda rounded-pill"
+          style={{ marginRight: "100px" }}
+        >
           <MDBRow>
             <MDBLink to="/home">
               <MDBCol
@@ -36,26 +42,26 @@ const NavExplore = (props, postSignout) => {
               >
                 <i
                   className="fab fa-twitter fa-2x twitternav"
-                  style={{ color: "#38A1F3" }}
+                  style={{ color: "#1c9ceb" }}
                 ></i>
               </MDBCol>
             </MDBLink>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/home" display="flex" style={{ color: "#38A1F3" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          to="/home"
+          className="beranda ml-2 rounded-pill"
+          style={{ color: "#1c9ceb" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-home fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
+            <MDBCol size="7" className="text-left pl-0">
               <span
                 style={{
-                  fontSize: "18px",
-                  fontWeight: "900",
+                  fontSize: "19px",
+                  fontWeight: "700",
                 }}
               >
                 Beranda
@@ -63,101 +69,99 @@ const NavExplore = (props, postSignout) => {
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/explore" display="flex" style={{ color: "black" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/explore"
+          style={{ color: "#181818" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-hashtag fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>
                 Jelajahi
               </span>
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/notifikasi" display="flex" style={{ color: "black" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/notifikasi"
+          style={{ color: "#181818" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-bell fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>
                 Notifikasi
               </span>
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/pesan" display="flex" style={{ color: "black" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/pesan"
+          style={{ color: "#181818" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-envelope fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>Pesan</span>
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>Pesan</span>
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/markah" display="flex" style={{ color: "black" }}>
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/markah"
+          style={{ color: "#181818" }}
+        >
           <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-bookmark fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>
                 Markah
               </span>
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/daftar" display="flex" style={{ color: "black" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/daftar"
+          style={{ color: "#181818" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-adjust fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>
-                Change theme
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>
+                Change
               </span>
             </MDBCol>
           </MDBRow>
         </MDBNavLink>
-        <MDBNavLink to="/profile" display="flex" style={{ color: "black" }}>
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+        <MDBNavLink
+          className="beranda ml-2 rounded-pill"
+          to="/profile"
+          style={{ color: "#181818" }}
+        >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-user fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
+            <MDBCol size="7" className="text-left pl-0">
               <span
                 style={{
-                  fontSize: "18px",
-                  fontWeight: "900",
-                  color: "black",
+                  fontSize: "19px",
+                  fontWeight: "700",
                 }}
-                className="text-left ml-0 pl-0"
               >
                 Profil
               </span>
@@ -165,22 +169,17 @@ const NavExplore = (props, postSignout) => {
           </MDBRow>
         </MDBNavLink>
         <MDBNavLink
+          className="beranda ml-2 rounded-pill"
           to="/"
           onClick={(event) => postSignout(event.target.value)}
-          // onClick={() => postSignout()}
-          display="flex"
-          style={{ color: "black" }}
+          style={{ color: "#181818" }}
         >
-          <MDBRow>
-            <MDBCol
-              className="pr-0 mr-0 text-right"
-              size="5"
-              style={{ width: "50px" }}
-            >
+          <MDBRow className="d-flex align-items-center">
+            <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-sign-out-alt fa-2x mr-3"></i>
             </MDBCol>
-            <MDBCol size="7" className="ml-0 text-left pl-0">
-              <span style={{ fontSize: "18px", fontWeight: "900" }}>
+            <MDBCol size="7" className="text-left pl-0">
+              <span style={{ fontSize: "19px", fontWeight: "700" }}>
                 Log out
               </span>
             </MDBCol>
@@ -188,11 +187,12 @@ const NavExplore = (props, postSignout) => {
         </MDBNavLink>
         <MDBBtn
           color="#38A1F3"
-          className="mx-auto rounded-pill text-capitalize text-white"
+          className="mx-auto rounded-pill py-2 my-3 text-capitalize text-white"
           style={{
-            backgroundColor: "#38A1F3",
-            width: "150px",
+            backgroundColor: "#1c9ceb",
+            width: "160px",
             fontSize: "14px",
+            boxShadow: "none",
           }}
         >
           Tweet
@@ -200,7 +200,7 @@ const NavExplore = (props, postSignout) => {
         <MDBDropdown className="dropdown">
           <MDBDropdownToggle
             color="transparent"
-            className="m-0 p-0"
+            className="m-0 p-0 beranda rounded-pill"
             style={{ boxShadow: "none" }}
           >
             <MDBBox
@@ -216,18 +216,21 @@ const NavExplore = (props, postSignout) => {
                 style={{ width: "50px", height: "50px" }}
               />
               <MDBBox className="ml-2 pt-3 text-left">
-                <p className="pb-0 mb-0 text-capitalize text-truncate">
+                <p
+                  className="pb-0 mb-0 text-capitalize text-truncate"
+                  style={{ width: "70px", fontSize: "16px" }}
+                >
                   <strong>{props.nama}</strong>
                 </p>
                 <p className="pt-0 mt-0 text-lowercase">{props.username}</p>
               </MDBBox>
 
-              <MDBIcon icon="angle-down" className="ml-3" />
+              <MDBIcon icon="angle-down" className="ml-3 pr-2" />
             </MDBBox>
           </MDBDropdownToggle>
           <MDBDropdownMenu>
             <MDBDropdownItem>
-              <MDBLink to="/profile">Profile</MDBLink>
+              <MDBLink to="/profile">Delete account</MDBLink>
             </MDBDropdownItem>
             <MDBDropdownItem>
               <MDBLink to="/" onClick={() => postSignout()}>

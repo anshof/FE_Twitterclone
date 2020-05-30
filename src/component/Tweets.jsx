@@ -1,12 +1,18 @@
 import React from "react";
-import { MDBBox, MDBRow, MDBCol, MDBMedia, MDBBtn } from "mdbreact";
 import moment from "moment";
 import dateFormat from "dateformat";
 
+import { MDBBox, MDBRow, MDBCol, MDBMedia, MDBBtn } from "mdbreact";
+
+import "../css/style.css";
+
 const Tweets = (props, dTweet) => {
+  // delete tweet
   dTweet = async (e) => {
     await props.handleDelete(e);
   };
+
+  // change date format
   const sles = props.created_at.slice(0, 25);
   const removeKoma = sles.replace(",", "");
   const changeFormat = dateFormat(removeKoma);
@@ -24,9 +30,9 @@ const Tweets = (props, dTweet) => {
           />
         </MDBCol>
         <MDBCol className="pt-2 pl-0" size="10">
-          <MDBBox>
+          <MDBBox style={{ fontSize: "15px" }}>
             <p className="text-left mb-0">
-              <strong>{props.name}</strong>{" "}
+              <strong>{props.name} </strong>
               <span style={{ color: "#777" }}>
                 {props.username} &middot; {moment(changeDate).fromNow()}
               </span>
@@ -40,22 +46,22 @@ const Tweets = (props, dTweet) => {
               <MDBBtn
                 color="transparent"
                 style={{ boxShadow: "none" }}
-                className="far fa-comment-alt"
+                className="py-2 my-0 far fa-comment-alt"
               ></MDBBtn>
               <MDBBtn
                 color="transparent"
                 style={{ boxShadow: "none" }}
-                className="far fa-edit"
+                className="py-0 my-0 far fa-edit"
               ></MDBBtn>
               <MDBBtn
                 color="transparent"
                 style={{ boxShadow: "none" }}
-                className="far fa-heart"
+                className="py-0 my-0 far fa-heart"
               ></MDBBtn>
 
               <MDBBtn
                 value={props.id}
-                className="far fa-trash-alt"
+                className="py-0 my-0 far fa-trash-alt"
                 color="transparent"
                 style={{ boxShadow: "none" }}
                 onClick={(event) => dTweet(event.target.value)}

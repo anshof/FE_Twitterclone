@@ -20,7 +20,7 @@ export const getAllTweet = () => {
   };
 };
 
-// post tweet from a certain user
+// post tweet
 export const postTweet = () => {
   return async (dispatch, getState) => {
     const bodyRequest = {
@@ -45,6 +45,7 @@ export const postTweet = () => {
   };
 };
 
+// on change when user input a tweet
 export const changeInputTweet = (e) => {
   return {
     type: "CHANGE_INPUT_TWEET",
@@ -52,6 +53,7 @@ export const changeInputTweet = (e) => {
   };
 };
 
+// get tweet by a user
 export const getTweetbyUser = (e) => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
@@ -73,6 +75,7 @@ export const getTweetbyUser = (e) => {
   };
 };
 
+// delete tweet
 export const deleteTweet = (item) => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");

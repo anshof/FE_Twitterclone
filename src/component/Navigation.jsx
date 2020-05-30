@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -9,9 +11,9 @@ import {
   MDBFormInline,
   MDBContainer,
   MDBCol,
-  MDBBtn,
+  MDBLink,
 } from "mdbreact";
-import { BrowserRouter as Router } from "react-router-dom";
+
 import "../css/style.css";
 
 const NavbarPage = (state, toggleCollapse, toggle, props) => {
@@ -44,7 +46,7 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
           <MDBCol className="d-flex justify-content-start" size="7">
             <MDBNavbarBrand>
               <Link to="/">
-                <i className="fab fa-twitter" style={{ color: "#38A1F3" }}></i>
+                <i className="fab fa-twitter" style={{ color: "#1c9ceb" }}></i>
               </Link>
             </MDBNavbarBrand>
             <MDBNavbarNav left>
@@ -52,7 +54,7 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
                 <MDBFormInline waves>
                   <div
                     className="md-form d-flex justify-content-center my-0 rounded-pill"
-                    style={{ backgroundColor: " #aab8c2 " }}
+                    style={{ backgroundColor: " #e1e8ed " }}
                   >
                     <i
                       className="fas fa-search ml-4 logo my-auto"
@@ -60,7 +62,7 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
                       aria-hidden="true"
                     ></i>
                     <input
-                      className="form-control search mr-sm-2 border-0 my-0 ml-3"
+                      className="form-control search mr-sm-2 border-0 my-auto ml-3"
                       type="search"
                       placeholder="Search Twitter"
                       aria-label="Search"
@@ -82,46 +84,37 @@ const NavbarPage = (state, toggleCollapse, toggle, props) => {
               <MDBNavItem active>
                 <MDBNavLink
                   to="#!"
-                  className="my-0 mx-2 rounded-pill"
+                  className="my-0 mx-2 rounded-pill font-weight-bold"
                   style={{
                     width: "90px",
-                    color: "#38A1F3",
+                    color: "#1c9ceb",
                     border: "1px solid #38A1F3",
-                    fontFamily: "Roboto",
                   }}
                 >
                   Log in
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBBtn
-                  to="#!"
-                  color="info"
-                  className="my-0 mx-2 text-capitalize rounded-pill"
+                <MDBLink
+                  // to="#!"
+                  className="my-0 mx-2 text-capitalize rounded-pill font-weight-bold"
                   style={{
                     width: "120px",
                     color: "white",
+                    border: "1px solid #1c9ceb",
+                    backgroundColor: "#1c9ceb",
                   }}
                   // onClick={toggle}
                 >
                   Sign up
-                </MDBBtn>
-                {/* <MDBModal isOpen={state.modal} toggle={toggle}>
-                  <MDBModalHeader toggle={toggle}>
-                    MDBModal title
-                  </MDBModalHeader>
-                  <MDBModalBody>(...)</MDBModalBody>
-                  <MDBModalFooter>
-                    <MDBBtn color="secondary" onClick={toggle}>
-                      Close
-                    </MDBBtn>
-                    <MDBBtn color="primary">Save changes</MDBBtn>
-                  </MDBModalFooter>
-                </MDBModal> */}
+                </MDBLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#!">
-                  <i className="fas fa-ellipsis-h"></i>
+                  <i
+                    className="fas fa-ellipsis-h"
+                    style={{ color: "#1c9ceb" }}
+                  ></i>
                 </MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>

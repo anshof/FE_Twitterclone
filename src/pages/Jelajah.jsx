@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
   MDBRow,
   MDBCol,
@@ -8,13 +10,17 @@ import {
   MDBMedia,
   MDBBtn,
 } from "mdbreact";
+
 import { changeInputTweet, postTweet } from "../store/action/actionTweet";
-import { connect } from "react-redux";
 import { getUser, doSignOut } from "../store/action/actionUser";
 import { getAllTweet, deleteTweet } from "../store/action/actionTweet";
+
 import NavExplore from "../component/NavExplore";
 import LastExplore from "../component/LastExplore";
 import Tweets from "../component/Tweets";
+
+import "../css/style.css";
+
 class Jelajah extends React.Component {
   componentDidMount = async () => {
     console.log("ambil data component did mount");
@@ -43,9 +49,9 @@ class Jelajah extends React.Component {
   };
   render() {
     return (
-      <div style={{ margin: "0 15px" }}>
+      <div style={{ margin: "0 15px", fontFamily: "Ubuntu" }}>
         <MDBRow>
-          {/* left side of jelajah > contain navigation */}
+          {/* navigation side (left side) from jelajah page */}
           <MDBCol className="pl-0 border-right" size="2">
             <NavExplore
               nama={this.props.userData.name}
@@ -55,18 +61,21 @@ class Jelajah extends React.Component {
               {...this.props}
             />
           </MDBCol>
-          {/* middle side > contain post tweet and get all tweet */}
+          {/* contain section to post a tweet and get all tweet by all user*/}
           <MDBCol size="6" className="border-right px-0">
             <MDBBox>
               <MDBBox className="border-bottom mx-0 px-0">
                 <MDBBox className="pt-3 mx-5 ">
                   <MDBRow className="d-flex justify-content-between">
-                    <p style={{ fontWeight: "900" }}>Beranda</p>
-                    <MDBIcon far icon="star" />
+                    <p style={{ fontWeight: "900", fontSize: "19px" }}>
+                      Beranda
+                    </p>
+                    <MDBIcon far icon="star" style={{ color: "#1c9ceb" }} />
                   </MDBRow>
                 </MDBBox>
               </MDBBox>
-              <MDBBox>
+              {/* post a tweet */}
+              <MDBBox className="py-0 my-0">
                 <MDBBox
                   display="flex"
                   justifyContent="start"
@@ -74,12 +83,12 @@ class Jelajah extends React.Component {
                 >
                   <MDBMedia
                     object
-                    className="my-3 ml-4 rounded-circle"
+                    className="ml-4 rounded-circle"
                     src={this.props.userData.pict_profile}
                     alt="pict"
                     style={{ width: "50px", height: "50px" }}
                   />
-                  <MDBBox className="w-100 ml-3" style={{ width: "500px" }}>
+                  <MDBBox className="w-100 ml-3">
                     <MDBInput
                       className="border-bottom-0"
                       label="What's happening?"
@@ -94,25 +103,26 @@ class Jelajah extends React.Component {
                   display="flex"
                   justifyContent="between"
                   alignItems="center"
-                  style={{ color: "#38A1F3" }}
+                  style={{ color: "#1c9ceb" }}
                 >
                   <MDBBox style={{ marginLeft: "90px" }}>
-                    <i className="far fa-image fa-2x mr-4"></i>
-                    <i className="far fa-image fa-2x mr-4"></i>
-                    <i className="fas fa-chart-bar fa-2x mr-4"></i>
+                    <i className="far fa-image fa-2x mr-4 my-0"></i>
+                    <i className="far fa-image fa-2x mr-4 my-0"></i>
+                    <i className="fas fa-chart-bar fa-2x mr-4 my-0"></i>
                     <i
-                      className="far fa-smile fa-2x"
+                      className="far fa-smile fa-2x my-0"
                       style={{ paddingRight: "0px" }}
                     ></i>
                   </MDBBox>
                   <MDBBtn
                     type="submit"
-                    color="#38A1F3"
-                    className="rounded-pill text-capitalize text-white"
+                    color="#1c9ceb"
+                    className="rounded-pill text-capitalize py-2 mt-0 mb-2 text-white"
                     style={{
-                      backgroundColor: "#38A1F3",
-                      width: "150px",
+                      backgroundColor: "#1c9ceb",
+                      width: "110px",
                       fontSize: "14px",
+                      boxShadow: "none",
                     }}
                     onClick={() => this.postAfterTweet()}
                   >
@@ -134,7 +144,6 @@ class Jelajah extends React.Component {
             {this.props.tweetData.map((el, index) => (
               <div key={index}>
                 <Tweets
-                  // index={index}
                   id={el.id}
                   name={el.user_id.name}
                   username={el.user_id.username}
@@ -147,7 +156,7 @@ class Jelajah extends React.Component {
               </div>
             ))}
           </MDBCol>
-          {/* left side */}
+          {/* left side from jelajah page*/}
           <MDBCol size="4" className="">
             <LastExplore />
           </MDBCol>

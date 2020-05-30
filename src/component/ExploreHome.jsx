@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../css/style.css";
 import { MDBBox } from "mdbreact";
+
+import "../css/style.css";
 
 const ExploreHome = () => {
   return (
@@ -12,12 +13,12 @@ const ExploreHome = () => {
         border: "1px solid #aab8c2",
         marginTop: "0",
         backgroundColor: "white",
-        fontFamily: "Roboto",
+        fontFamily: "Ubuntu",
       }}
     >
       <MDBBox className="d-flex justify-content-between mx-1 align-items-center py-2 px-2">
         <p className="my-auto font-weight-bold">Explore</p>
-        <i className="fas fa-cog my-auto" style={{ color: "#38A1F3" }}></i>
+        <i className="fas fa-cog my-auto" style={{ color: "#1c9ceb" }}></i>
       </MDBBox>
       <div className="my-0 py-0">
         <img
@@ -83,14 +84,14 @@ const ExploreHome = () => {
         <div className="listBottom text-left border-bottom p-2">
           <div className=" d-flex justify-content-between ">
             <small className="my-auto text-muted mx-1">
-              Trending in Indonesia
+              Kpop &middot; Trending
             </small>
             <i
               className="fas fa-angle-down pr-3"
               style={{ color: "#aab8c2" }}
             ></i>
           </div>
-          <p className="my-auto font-weight-bold mx-1 text-dark">Open BO</p>
+          <p className="my-auto font-weight-bold mx-1 text-dark">Rose</p>
           <small className="text-muted mx-1">13.6K Tweets</small>
         </div>
       </Link>
@@ -105,10 +106,8 @@ const ExploreHome = () => {
               style={{ color: "#aab8c2" }}
             ></i>
           </div>
-          <p className="my-auto font-weight-bold mx-1 text-dark">
-            #keperawanan
-          </p>
-          <small className="text-muted mx-1">Trending with: Sarah Keihl</small>
+          <p className="my-auto font-weight-bold mx-1 text-dark">RCTI</p>
+          <small className="text-muted mx-1">390K Tweets</small>
         </div>
       </Link>
       <Link to="\">
@@ -165,7 +164,7 @@ const ExploreHome = () => {
       </Link>
       <Link to="\">
         <div className="listBottom text-left border-bottom p-2">
-          <p className="my-auto mx-1" style={{ color: "#38A1F3" }}>
+          <p className="my-auto mx-1" style={{ color: "#1c9ceb" }}>
             Show more
           </p>
         </div>

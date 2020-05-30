@@ -1,27 +1,36 @@
 import React from "react";
+import moment from "moment";
+
 import { MDBBox, MDBLink, MDBMedia, MDBBtn } from "mdbreact";
 
+import "../css/style.css";
 const MiddleExplore = (props) => {
-  const sles = props.created_at.slice(8, 16);
-  // const removeKoma = sles.replace(",", "");
-
   return (
-    <MDBBox className="pt-3">
-      {/* 1st row  */}
-      <MDBBox display="flex" alignItems="center" className="pb-2 border-bottom">
+    <MDBBox className="pt-1">
+      {/* get user name and total tweet */}
+      <MDBBox className="d-flex border-bottom">
         <MDBLink to="/home">
           <i
             className="fas fa-arrow-left fa-2x"
-            style={{ color: "#38A1F3" }}
+            style={{ color: "#1c9ceb" }}
           ></i>
         </MDBLink>
-        <MDBBox style={{ color: "black", textAlign: "left" }}>
-          <span className="text-capitalize font-weight-bold">{props.name}</span>
-          <br />
-          <small className="">jumlah tweet</small>
+        <MDBBox>
+          <MDBBox style={{ color: "black", textAlign: "left" }}>
+            <span
+              className="text-capitalize"
+              style={{ fontSize: "19px", fontWeight: "700" }}
+            >
+              {props.name}
+            </span>
+            <br />
+            <p className="mb-0" style={{ fontSize: "13px" }}>
+              {props.jumlah} tweet
+            </p>
+          </MDBBox>
         </MDBBox>
       </MDBBox>
-      {/* 2nd row > profile */}
+      {/* user profile */}
       <MDBBox className="position-relative">
         <MDBMedia
           object
@@ -40,14 +49,21 @@ const MiddleExplore = (props) => {
             width: "150px",
             height: "150px",
             borderRadius: "50%",
-            border: "7px solid white",
+            border: "5px solid white",
             margin: "-50px 20px",
           }}
         />
         <MDBBtn
           color="transparent"
-          className="rounded-pill text-capitalize"
-          style={{ marginLeft: "280px", border: "2px solid #38A1F3" }}
+          className="rounded-pill beranda text-capitalize font-weight-bold px-0 py-2"
+          style={{
+            marginLeft: "280px",
+            border: "2px solid #38A1F3",
+            boxShadow: "none",
+            color: "#1c9ceb",
+            width: "150px",
+            fontSize: "15px",
+          }}
         >
           Edit profile
         </MDBBtn>
@@ -60,20 +76,37 @@ const MiddleExplore = (props) => {
           marginLeft: "20px",
         }}
       >
-        <p className="text-capitalize font-weight-bold mb-0 pb-0">
+        <p
+          className="text-capitalize font-weight-bold mb-0 pb-0"
+          style={{ fontSize: "19px" }}
+        >
           {props.name}
         </p>
-        <p className="mb-2">{props.username}</p>
-        <p className="text-capitalize mb-2">{props.bio}</p>
-        <MDBBox display="flex" alignItems="baseline">
+        <p className="mb-2" style={{ fontSize: "15px", color: "#657786" }}>
+          {props.username}
+        </p>
+        <p className="text-capitalize mb-2" style={{ fontSize: "15px" }}>
+          {props.bio}
+        </p>
+        <MDBBox
+          display="flex"
+          alignItems="baseline"
+          style={{ fontSize: "15px", color: "#657786" }}
+        >
           <i className="far fa-calendar-alt mr-3"></i>
 
-          <p>Bergabung {props.created_at}</p>
+          <p className="mb-1">
+            Bergabung {moment.utc(props.created_at).format("MMMM YYYY")}
+          </p>
         </MDBBox>
-        <span>
-          <span className="font-weight-bold">{props.following}</span>
+        <span style={{ fontSize: "15px", color: "#657786" }}>
+          <span className="font-weight-bold text-dark">
+            {props.totalFollower}
+          </span>
           Mengikuti
-          <span className="ml-2 font-weight-bold">{props.follower}</span>
+          <span className="ml-2 font-weight-bold text-dark">
+            {props.follower}
+          </span>
           Pengikut
         </span>
       </MDBBox>

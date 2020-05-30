@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// user do login
 export const doLogin = () => {
   return async (dispatch, getState) => {
     await axios({
@@ -39,6 +40,8 @@ export const doLogin = () => {
       });
   };
 };
+
+// on change when user login
 export const changeInputUser = (e) => {
   return {
     type: "CHANGE_INPUT_USER",
@@ -46,6 +49,7 @@ export const changeInputUser = (e) => {
   };
 };
 
+// get user details
 export const getUser = () => {
   return async (dispatch, getState) => {
     const token = localStorage.getItem("token");
@@ -67,6 +71,8 @@ export const getUser = () => {
       });
   };
 };
+
+// user do sign out
 export const doSignOut = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("is_login");
@@ -74,6 +80,8 @@ export const doSignOut = () => {
     type: "SUCCESS_LOGOUT",
   };
 };
+
+// user do sign up
 export const signUp = () => {
   return async (dispatch, getState) => {
     console.warn("dari action");
@@ -100,10 +108,30 @@ export const signUp = () => {
       .then(async () => {
         console.warn("dari then action");
         dispatch({ type: "SUCCESS_SIGNUP" });
-        // localStorage.setItem("is_modal", true);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 };
+
+// delete tweet
+// export const deleteTweet = (item) => {
+//   return async (dispatch) => {
+//     const token = localStorage.getItem("token");
+//     await axios
+//       .delete("http://0.0.0.0:5050/tweet/" + item, {
+//         headers: {
+//           "Content-Type": "application/json; charset=utf-8",
+//           Accept: "application/json; charset=utf-8",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       })
+//       .then(async (response) => {
+//         dispatch({ type: "DELETE_TWEET" });
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   };
+// };
