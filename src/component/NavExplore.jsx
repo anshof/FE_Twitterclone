@@ -34,12 +34,7 @@ const NavExplore = (props, postSignout) => {
         >
           <MDBRow>
             <MDBLink to="/home">
-              <MDBCol
-                size="5"
-                display="flex"
-                alignSelf="center"
-                className="text-right"
-              >
+              <MDBCol size="5" display="flex" className="text-right">
                 <i
                   className="fab fa-twitter fa-2x twitternav"
                   style={{ color: "#1c9ceb" }}
@@ -53,7 +48,7 @@ const NavExplore = (props, postSignout) => {
           className="beranda ml-2 rounded-pill"
           style={{ color: "#1c9ceb" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-home fa-2x mr-3"></i>
             </MDBCol>
@@ -74,7 +69,7 @@ const NavExplore = (props, postSignout) => {
           to="/explore"
           style={{ color: "#181818" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center  mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-hashtag fa-2x mr-3"></i>
             </MDBCol>
@@ -90,7 +85,7 @@ const NavExplore = (props, postSignout) => {
           to="/notifikasi"
           style={{ color: "#181818" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center  mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-bell fa-2x mr-3"></i>
             </MDBCol>
@@ -106,7 +101,7 @@ const NavExplore = (props, postSignout) => {
           to="/pesan"
           style={{ color: "#181818" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center  mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-envelope fa-2x mr-3"></i>
             </MDBCol>
@@ -120,7 +115,7 @@ const NavExplore = (props, postSignout) => {
           to="/markah"
           style={{ color: "#181818" }}
         >
-          <MDBRow>
+          <MDBRow className="d-flex align-items-center  mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-bookmark fa-2x mr-3"></i>
             </MDBCol>
@@ -136,7 +131,7 @@ const NavExplore = (props, postSignout) => {
           to="/daftar"
           style={{ color: "#181818" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="fas fa-adjust fa-2x mr-3"></i>
             </MDBCol>
@@ -152,7 +147,7 @@ const NavExplore = (props, postSignout) => {
           to="/profile"
           style={{ color: "#181818" }}
         >
-          <MDBRow className="d-flex align-items-center">
+          <MDBRow className="d-flex align-items-center mb-2">
             <MDBCol className="pr-0 text-right" size="5">
               <i className="far fa-user fa-2x mr-3"></i>
             </MDBCol>
@@ -169,7 +164,7 @@ const NavExplore = (props, postSignout) => {
           </MDBRow>
         </MDBNavLink>
         <MDBNavLink
-          className="beranda ml-2 rounded-pill"
+          className="beranda ml-2 rounded-pill mb-2"
           to="/"
           onClick={(event) => postSignout(event.target.value)}
           style={{ color: "#181818" }}

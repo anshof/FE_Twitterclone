@@ -9,29 +9,51 @@ import {
   MDBIcon,
   MDBMedia,
   MDBBtn,
+  MDBLink,
+  MDBFormInline,
 } from "mdbreact";
 
-import { changeInputTweet, postTweet } from "../store/action/actionTweet";
+import {
+  changeInputTweet,
+  postTweet,
+  getAllTweet,
+  deleteTweet,
+  getTweetbyFollowedUser,
+} from "../store/action/actionTweet";
 import { getUser, doSignOut } from "../store/action/actionUser";
-import { getAllTweet, deleteTweet } from "../store/action/actionTweet";
+import {
+  getNoFollower,
+  postFollow,
+  changeInputFollow,
+} from "../store/action/actionFollow";
 
 import NavExplore from "../component/NavExplore";
-import LastExplore from "../component/LastExplore";
+import RecomendedFollow from "../component/RecomendedFollow";
 import Tweets from "../component/Tweets";
 
 import "../css/style.css";
+import Hashtag from "../component/Hashtag";
 
 class Jelajah extends React.Component {
   componentDidMount = async () => {
     console.log("ambil data component did mount");
     await this.props.getUser();
     await this.props.getAllTweet();
+    await this.props.getNoFollower();
+    await this.props.getTweetbyFollowedUser();
   };
   postAfterTweet = async () => {
     await this.props.postTweet();
     await this.props.history.replace("/home");
-    await this.props.getAllTweet();
+    // await this.props.getAllTweet();
+    await this.props.getTweetbyFollowedUser();
     this.inputReset();
+  };
+  postAfterFollow = async (e) => {
+    await this.props.postFollow(e);
+    await this.props.history.replace("/home");
+    await this.props.getNoFollower();
+    await this.props.getTweetbyFollowedUser();
   };
   inputReset = () => {
     const postInput = document.getElementById("postInput");
@@ -41,13 +63,17 @@ class Jelajah extends React.Component {
     await this.props.deleteTweet(e);
     await this.props.history.replace("/home");
     await this.props.getAllTweet();
-    this.inputReset();
+    await this.props.getTweetbyFollowedUser();
   };
   signOut = async (e) => {
     await this.props.doSignOut(e);
     await this.props.history.replace("/");
   };
   render() {
+    // const login = this.props.login;
+    // if (login === null || login === false) {
+    //   return alert("You're not log in yet")(<Redirect to="/" />);
+    // } else {
     return (
       <div style={{ margin: "0 15px", fontFamily: "Ubuntu" }}>
         <MDBRow>
@@ -141,7 +167,7 @@ class Jelajah extends React.Component {
               </MDBBox>
             </MDBBox>
             {/* get all tweets */}
-            {this.props.tweetData.map((el, index) => (
+            {this.props.tweetDataFollow.map((el, index) => (
               <div key={index}>
                 <Tweets
                   id={el.id}
@@ -156,19 +182,100 @@ class Jelajah extends React.Component {
               </div>
             ))}
           </MDBCol>
-          {/* left side from jelajah page*/}
-          <MDBCol size="4" className="">
-            <LastExplore />
+          {/* left side from jelajah page> contain search bar, hashtag and recomended user to follow */}
+          <MDBCol size="4">
+            <MDBBox className="pt-2">
+              {/* search bar */}
+              <MDBFormInline waves>
+                <div
+                  className="md-form d-flex justify-content-center my-0 rounded-pill"
+                  style={{ backgroundColor: " #e1e8ed " }}
+                >
+                  <i
+                    className="fas fa-search ml-4 logo my-auto"
+                    style={{ color: "#657786 " }}
+                    aria-hidden="true"
+                  ></i>
+                  <input
+                    className="form-control search border-0 my-0 ml-3"
+                    type="search"
+                    placeholder="Cari di Twitter"
+                    aria-label="Search"
+                    style={{ width: "340px" }}
+                  />
+                </div>
+              </MDBFormInline>
+              {/* hashtag */}
+              <Hashtag />
+              {/* recomended user to follow */}
+              <MDBBox
+                className="mt-2 ml-1"
+                style={{
+                  backgroundColor: "#f5f8fa",
+                  borderRadius: "20px",
+                }}
+              >
+                <MDBBox>
+                  <MDBBox className="border-bottom">
+                    <MDBBox
+                      display="flex"
+                      justifyContent="between"
+                      alignItems="center"
+                      className="mx-3"
+                    >
+                      <p
+                        className="pt-3"
+                        style={{ fontWeight: "700", fontSize: "19px" }}
+                      >
+                        Untuk diikuti
+                      </p>
+                    </MDBBox>
+                  </MDBBox>
+                  {this.props.recFollower.map((el, index) => (
+                    <div key={index}>
+                      <RecomendedFollow
+                        id={el.id}
+                        username={el.username}
+                        name={el.name}
+                        pict_profile={el.pict_profile}
+                        handleFollow={(e) => this.postAfterFollow(e)}
+                      />
+                    </div>
+                  ))}
+                  <MDBBox>
+                    <MDBLink
+                      to="!#"
+                      className="text-left"
+                      style={{ fontSize: "15px", color: "#1c9ceb" }}
+                    >
+                      Tampilkan lebih banyak
+                    </MDBLink>
+                  </MDBBox>
+                </MDBBox>
+              </MDBBox>
+              <MDBBox className="text-left ml-3" style={{ color: "#657786" }}>
+                <small>
+                  Persyaratan Kebijakan privasi Kuki <br /> Informasi iklan
+                  Selengkapnya
+                  <br /> 2020 Twitter, Inc.
+                </small>
+              </MDBBox>
+            </MDBBox>
           </MDBCol>
         </MDBRow>
       </div>
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     tweetData: state.tweet.tweetData,
+    tweetDataFollow: state.tweet.tweetDataFollow,
+    login: state.user.is_login,
+    followerData: state.follow.followerData,
+    recFollower: state.follow.recFollower,
   };
 };
 const mapDispatchToProps = {
@@ -178,5 +285,9 @@ const mapDispatchToProps = {
   changeInputTweet,
   postTweet,
   deleteTweet,
+  getNoFollower,
+  changeInputFollow,
+  postFollow,
+  getTweetbyFollowedUser,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Jelajah);

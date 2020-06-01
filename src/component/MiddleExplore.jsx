@@ -100,12 +100,12 @@ const MiddleExplore = (props) => {
           </p>
         </MDBBox>
         <span style={{ fontSize: "15px", color: "#657786" }}>
-          <span className="font-weight-bold text-dark">
-            {props.totalFollower}
+          <span className="font-weight-bold text-dark mr-1">
+            {props.totalFollowing}
           </span>
           Mengikuti
-          <span className="ml-2 font-weight-bold text-dark">
-            {props.follower}
+          <span className="ml-2 font-weight-bold text-dark mr-1">
+            {props.totalFollower}
           </span>
           Pengikut
         </span>

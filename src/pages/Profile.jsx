@@ -8,24 +8,34 @@ import {
   MDBNav,
   MDBNavLink,
   MDBNavItem,
+  MDBLink,
+  MDBFormInline,
 } from "mdbreact";
 
 import { getUser, doSignOut } from "../store/action/actionUser";
 import { getTweetbyUser, deleteTweet } from "../store/action/actionTweet";
-import { getFollower } from "../store/action/actionFollow";
+import {
+  getFollowing,
+  getNoFollower,
+  getFollower,
+  postFollow,
+} from "../store/action/actionFollow";
 
 import NavExplore from "../component/NavExplore";
-import LastExplore from "../component/LastExplore";
+import RecomendedFollow from "../component/RecomendedFollow";
 import Tweets from "../component/Tweets";
 import MiddleExplore from "../component/MiddleExplore";
+import Hashtag from "../component/Hashtag";
 
 import "../css/style.css";
 
 class Profile extends React.Component {
   componentDidMount = async () => {
-    this.props.getUser();
-    this.props.getTweetbyUser();
-    this.props.getFollower();
+    await this.props.getUser();
+    await this.props.getTweetbyUser();
+    await this.props.getFollowing();
+    await this.props.getFollower();
+    await this.props.getNoFollower();
   };
 
   changeRouterDetail = (e) => {
@@ -40,7 +50,12 @@ class Profile extends React.Component {
     await this.props.deleteTweet(e);
     await this.props.history.replace("/profile");
     this.props.getTweetbyUser();
-    this.props.getFollower();
+  };
+  postAfterFollow = async (e) => {
+    await this.props.postFollow(e);
+    await this.props.history.replace("/profile");
+    await this.props.getNoFollower();
+    await this.props.getFollowing();
   };
   render() {
     return (
@@ -69,6 +84,7 @@ class Profile extends React.Component {
               following={this.props.userData.following}
               {...this.props}
               jumlah={this.props.tweetDataUser.length}
+              totalFollowing={this.props.followingData.length}
               totalFollower={this.props.followerData.length}
             />
             {/* nav tab */}
@@ -108,9 +124,88 @@ class Profile extends React.Component {
               ))}
             </MDBBox>
           </MDBCol>
-          {/* left side */}
-          <MDBCol size="4" sm="12" md="4" className="">
-            <LastExplore />
+          {/* left side from jelajah page> contain search bar, hashtag and recomended user to follow */}
+          <MDBCol size="4" sm="12" md="4">
+            <MDBBox className="pt-2">
+              {/* search bar */}
+              <MDBFormInline waves>
+                <div
+                  className="md-form d-flex justify-content-center my-0 rounded-pill"
+                  style={{ backgroundColor: " #e1e8ed " }}
+                >
+                  <i
+                    className="fas fa-search ml-4 logo my-auto"
+                    style={{ color: "#657786 " }}
+                    aria-hidden="true"
+                  ></i>
+                  <input
+                    className="form-control search border-0 my-0 ml-3"
+                    type="search"
+                    placeholder="Cari di Twitter"
+                    aria-label="Search"
+                    style={{ width: "340px" }}
+                  />
+                </div>
+              </MDBFormInline>
+              {/* hashtag */}
+              <Hashtag />
+              {/* recomended user to follow */}
+              <MDBBox
+                className="mt-2 ml-1"
+                style={{
+                  backgroundColor: "#f5f8fa",
+                  borderRadius: "20px",
+                }}
+              >
+                <MDBBox>
+                  <MDBBox className="border-bottom">
+                    <MDBBox
+                      display="flex"
+                      justifyContent="between"
+                      alignItems="center"
+                      className="mx-3"
+                    >
+                      <p
+                        className="pt-3"
+                        style={{ fontWeight: "700", fontSize: "19px" }}
+                      >
+                        Untuk diikuti
+                      </p>
+                    </MDBBox>
+                  </MDBBox>
+                  {this.props.recFollower.map((el, index) => (
+                    <div key={index}>
+                      <RecomendedFollow
+                        id={el.id}
+                        username={el.username}
+                        name={el.name}
+                        pict_profile={el.pict_profile}
+                        handleFollow={(e) => this.postAfterFollow(e)}
+                      />
+                    </div>
+                  ))}
+                  <MDBBox>
+                    <MDBLink
+                      to="!#"
+                      className="text-left"
+                      style={{ fontSize: "15px", color: "#1c9ceb" }}
+                    >
+                      Tampilkan lebih banyak
+                    </MDBLink>
+                  </MDBBox>
+                </MDBBox>
+              </MDBBox>
+              <MDBBox
+                className="text-left ml-3 mb-5"
+                style={{ color: "#657786" }}
+              >
+                <small>
+                  Persyaratan Kebijakan privasi Kuki <br /> Informasi iklan
+                  Selengkapnya
+                  <br /> 2020 Twitter, Inc.
+                </small>
+              </MDBBox>
+            </MDBBox>
           </MDBCol>
         </MDBRow>
       </MDBBox>
@@ -121,7 +216,10 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     tweetDataUser: state.tweet.tweetDataUser,
+    followingData: state.follow.followingData,
     followerData: state.follow.followerData,
+    recFollower: state.follow.recFollower,
+    login: state.user.is_login,
   };
 };
 const mapDispatchToProps = {
@@ -129,6 +227,9 @@ const mapDispatchToProps = {
   getTweetbyUser,
   deleteTweet,
   doSignOut,
+  getFollowing,
+  getNoFollower,
   getFollower,
+  postFollow,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

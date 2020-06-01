@@ -5,6 +5,7 @@ const initialState = {
   updated_at: "",
   tweetData: [],
   tweetDataUser: [],
+  tweetDataFollow: [],
 };
 export default function tweetReducer(tweetState = initialState, action) {
   switch (action.type) {
@@ -17,6 +18,15 @@ export default function tweetReducer(tweetState = initialState, action) {
       return {
         ...tweetState,
         tweetData: action.payload,
+        user_id: action.payload.user_id,
+        tweet: action.payload.tweet,
+        created_at: action.payload.created_at,
+        updated_at: action.payload.updated_at,
+      };
+    case "GET_FOLLOWED_TWEETS":
+      return {
+        ...tweetState,
+        tweetDataFollow: action.payload,
         user_id: action.payload.user_id,
         tweet: action.payload.tweet,
         created_at: action.payload.created_at,

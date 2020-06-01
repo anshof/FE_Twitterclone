@@ -95,3 +95,28 @@ export const deleteTweet = (item) => {
       });
   };
 };
+
+// get all tweets from followed-users
+export const getTweetbyFollowedUser = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://0.0.0.0:5050/tweet/tweet", {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Accept: "application/json; charset=utf-8",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(async (response) => {
+        dispatch({
+          type: "GET_FOLLOWED_TWEETS",
+          payload: response.data,
+        });
+        console.log("get all tweets", response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};

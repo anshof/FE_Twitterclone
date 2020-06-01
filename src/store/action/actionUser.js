@@ -30,6 +30,7 @@ export const doLogin = () => {
         });
 
         dispatch({ type: "GET_USER_DATA", payload: res.data });
+        localStorage.setItem("is_login", true);
 
         // end set user data
 
@@ -64,6 +65,7 @@ export const getUser = () => {
       .then(async (response) => {
         await dispatch({ type: "GET_USER_DATA", payload: response.data });
         console.warn("get user data", response.data);
+        localStorage.setItem("is_login", true);
       })
       .catch((error) => {
         console.log("masuk fungsi then get user");

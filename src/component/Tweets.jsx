@@ -32,7 +32,7 @@ const Tweets = (props, dTweet) => {
         <MDBCol className="pt-2 pl-0" size="10">
           <MDBBox style={{ fontSize: "15px" }}>
             <p className="text-left mb-0">
-              <strong>{props.name} </strong>
+              <strong className="text-capitalize">{props.name} </strong>
               <span style={{ color: "#777" }}>
                 {props.username} &middot; {moment(changeDate).fromNow()}
               </span>

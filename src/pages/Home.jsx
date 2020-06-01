@@ -26,8 +26,8 @@ class Home extends React.Component {
 
   postLogin = async () => {
     await this.props.doLogin();
-    const is_login = this.props.login;
-    if (is_login) {
+    const login = this.props.login;
+    if (login) {
       this.props.history.push("/home");
     }
   };
@@ -113,9 +113,10 @@ class Home extends React.Component {
                     />
                   </div>
                   <Link to="/">
-                    <p className="text-left ml-3" style={{ fontSize: "12px" }}>
-                      Forgot password?
-                    </p>
+                    <p
+                      className="text-left ml-3"
+                      style={{ fontSize: "12px" }}
+                    ></p>
                   </Link>
                   <div className="px-3 pb-1">
                     <MDBNavLink
