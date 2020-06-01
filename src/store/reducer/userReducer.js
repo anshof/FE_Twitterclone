@@ -1,6 +1,6 @@
 const initialState = {
   username: "",
-  is_login: false,
+  // is_login: false,
   userData: [],
   name: "",
   bio: "",
@@ -9,7 +9,6 @@ const initialState = {
   follower: "",
   following: "",
   created_at: "",
-  // is_modal: false,
 };
 
 export default function userReducer(userState = initialState, action) {
@@ -28,6 +27,7 @@ export default function userReducer(userState = initialState, action) {
     case "GET_USER_DATA":
       return {
         ...userState,
+        is_login: true,
         userData: action.payload,
         name: action.payload.name,
         username: action.payload.username,
@@ -45,6 +45,7 @@ export default function userReducer(userState = initialState, action) {
     case "SUCCESS_SIGNUP":
       return {
         ...userState,
+        is_login: false,
       };
     default:
       return userState;

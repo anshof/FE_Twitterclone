@@ -30,9 +30,10 @@ import {
 import NavExplore from "../component/NavExplore";
 import RecomendedFollow from "../component/RecomendedFollow";
 import Tweets from "../component/Tweets";
+import Hashtag from "../component/Hashtag";
 
 import "../css/style.css";
-import Hashtag from "../component/Hashtag";
+import { Redirect } from "react-router-dom";
 
 class Jelajah extends React.Component {
   componentDidMount = async () => {
@@ -69,13 +70,18 @@ class Jelajah extends React.Component {
     await this.props.doSignOut(e);
     await this.props.history.replace("/");
   };
+
   render() {
+    const login = localStorage.getItem("is_login");
     // const login = this.props.login;
     // if (login === null || login === false) {
     //   return alert("You're not log in yet")(<Redirect to="/" />);
     // } else {
     return (
       <div style={{ margin: "0 15px", fontFamily: "Ubuntu" }}>
+        {/* {!login ? (
+          <Redirect to={{ pathname: "/" }} />
+        ) : ( */}
         <MDBRow>
           {/* navigation side (left side) from jelajah page */}
           <MDBCol className="pl-0 border-right" size="2">
@@ -263,17 +269,19 @@ class Jelajah extends React.Component {
             </MDBBox>
           </MDBCol>
         </MDBRow>
+        {/* )} */}
       </div>
     );
   }
 }
+// }
 
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     tweetData: state.tweet.tweetData,
     tweetDataFollow: state.tweet.tweetDataFollow,
-    login: state.user.is_login,
+    // login: state.user.is_login,
     followerData: state.follow.followerData,
     recFollower: state.follow.recFollower,
   };

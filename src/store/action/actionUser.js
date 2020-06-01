@@ -13,28 +13,28 @@ export const doLogin = () => {
     })
       .then(async (response) => {
         if (response.data.hasOwnProperty("token")) {
-          dispatch({ type: "SUCCESS_LOGIN", payload: response.data });
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("is_login", true);
+          await dispatch({ type: "SUCCESS_LOGIN", payload: response.data });
+          // console.log("dari action login", )
+          await localStorage.setItem("token", response.data.token);
+          await localStorage.setItem("is_login", true);
+          const token = localStorage.getItem("token");
+          const res = await axios.get("http://0.0.0.0:5050/user", {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              Accept: "application/json; charset=utf-8",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          dispatch({ type: "GET_USER_DATA", payload: res.data });
+          // localStorage.setItem("is_login", true);
+
+          // end set user data
+
+          console.warn("cek dari login", response.data);
         }
 
         // set user data
-
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://0.0.0.0:5050/user", {
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            Accept: "application/json; charset=utf-8",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        dispatch({ type: "GET_USER_DATA", payload: res.data });
-        localStorage.setItem("is_login", true);
-
-        // end set user data
-
-        console.warn("cek dari login", response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -97,7 +97,7 @@ export const signUp = () => {
     };
     const json = JSON.stringify(bodyRequest);
     const token = localStorage.getItem("token");
-    localStorage.setItem("is_login", true);
+    localStorage.setItem("is_login", false);
 
     await axios
       .post("http://0.0.0.0:5050/user", json, {
