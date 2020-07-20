@@ -1,2 +1,17 @@
+Installation and Setup Instructions
 
-to execute the program, on terminal type 'npm start' and open it at [link](http://localhost:3000)
+Installation:
+
+npm install
+
+To Run Test Suite:
+
+npm test
+
+To Start Server:
+
+npm start
+
+To Visit App:
+
+localhost:3000/ideas
